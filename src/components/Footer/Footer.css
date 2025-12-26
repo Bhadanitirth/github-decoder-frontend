@@ -24,19 +24,128 @@
     color: #31A8E0;
 }
 
+/* --- LINKS CONTAINER --- */
 .footer-links {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Keeps it responsive */
+    gap: 15px;      /* Consistent spacing between links & button */
 }
 
+/* --- STANDARD LINKS --- */
 .footer-link {
     color: white;
-    margin: 0 10px;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 16px; /* Matches normal text */
 }
 
 .footer-link:hover {
-    color: #ddd;
+    color: #31A8E0; /* Hover color matches your icons */
+}
+
+/* --- UPDATE KEY BUTTON (Matches Links) --- */
+.token-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px; /* Same size as links */
+    font-family: inherit; /* Uses same font as rest of site */
+    display: flex;
+    align-items: center;
+    padding: 0;
+    transition: color 0.3s ease;
+    opacity: 0.8; /* Slightly dimmer to show it's "secondary" */
+}
+
+.token-btn:hover {
+    color: #31A8E0; /* Same blue hover as links */
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* --- TOKEN INPUT CONTAINER --- */
+.token-updater-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* --- INPUT FIELD --- */
+.token-input {
+    padding: 8px 12px;
+    border-radius: 20px; /* Pill shape matches your buttons */
+    border: 2px solid transparent;
+    background-color: #F0F8FF; /* Light blue/white */
+    color: #1E3A5F; /* Dark blue text */
+    font-size: 14px;
+    width: 250px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.token-input:focus {
+    border-color: #31A8E0; /* Highlight with theme blue */
+    background-color: white;
+    box-shadow: 0 0 8px rgba(49, 168, 224, 0.4);
+}
+
+/* --- SAVE BUTTON --- */
+.token-save-btn {
+    padding: 8px 16px;
+    background-color: #31A8E0;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.token-save-btn:hover {
+    background-color: #1E88E5; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+.token-save-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- STATUS ICONS --- */
+.status-icon {
+    font-size: 18px;
+    margin-left: 5px;
+}
+.status-icon.success { color: #4CAF50; /* Bright Green */ }
+.status-icon.error { color: #FF5252; /* Bright Red */ }
+
+/* --- BACK TO TOP BUTTON (Existing) --- */
+.back-to-top {
+    position: absolute; /* Fix placement if needed */
+    right: 20px;        /* Moves it to right side */
+    bottom: 20px;
+    background-color: #D0E6F2;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: #31A8E0;
+    transform: scale(1.1);
 }
 
 .social-media {
@@ -55,90 +164,28 @@
     transform: scale(1.2);
 }
 
-.back-to-top {
-    background-color: #D0E6F2;
-    color: black;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-left: 1150px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.back-to-top:hover {
-    background-color: #31A8E0;
-    transform: scale(1.2);
-}
-
-.token-btn {
-    background: none;
-    border: none;
-    color: #a0a0a0;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    transition: color 0.3s ease;
-}
-
-.token-btn:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.token-updater-container {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    animation: fadeIn 0.3s ease-in-out;
-}
-
-.token-input {
-    padding: 6px 10px;
-    border-radius: 4px;
-    border: 1px solid #444;
-    background-color: #222;
-    color: #fff;
-    font-size: 13px;
-    width: 220px;
-    outline: none;
-}
-
-.token-input:focus {
-    border-color: #007bff;
-}
-
-.token-save-btn {
-    padding: 6px 12px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: background 0.3s;
-}
-
-.token-save-btn:hover {
-    background-color: #218838;
-}
-
-.token-save-btn:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-}
-
-.status-icon {
-    margin-left: 5px;
-}
-.status-icon.success { color: #28a745; }
-.status-icon.error { color: #dc3545; }
-
+/* --- ANIMATIONS --- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsiveness for Footer */
+@media (max-width: 768px) {
+    .back-to-top {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: 10px auto;
+        display: block; /* Centers it on mobile */
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .token-input {
+        width: 200px;
+    }
 }
