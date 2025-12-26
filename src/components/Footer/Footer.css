@@ -71,3 +71,74 @@
     background-color: #31A8E0;
     transform: scale(1.2);
 }
+
+.token-btn {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.token-btn:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.token-updater-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.token-input {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
+    font-size: 13px;
+    width: 220px;
+    outline: none;
+}
+
+.token-input:focus {
+    border-color: #007bff;
+}
+
+.token-save-btn {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s;
+}
+
+.token-save-btn:hover {
+    background-color: #218838;
+}
+
+.token-save-btn:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.status-icon {
+    margin-left: 5px;
+}
+.status-icon.success { color: #28a745; }
+.status-icon.error { color: #dc3545; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
