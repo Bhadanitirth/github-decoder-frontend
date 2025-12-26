@@ -33,14 +33,14 @@ const Navbar = () => {
     }, [fetchUserData, user]);
 
     const handleSignIn = () => {
-        window.location.href = '${BASE_URL}/oauth2/authorization/github';
+        window.location.href = `${BASE_URL}/oauth2/authorization/github`;
     };
 
     const handleSignOut = () => {
         // localStorage.clear();
         logout();
         navigate('/');
-        window.location.href = '${BASE_URL}/logout';
+        window.location.href = `${BASE_URL}/logout`;
     };
 
     const handleClearData = async () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch("${BASE_URL}/api/database/clear-all", {
+            const response = await fetch(`${BASE_URL}/api/database/clear-all`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
