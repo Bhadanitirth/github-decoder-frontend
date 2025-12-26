@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useCallback } from 'react';
+import {BASE_URL} from "../config.jsx";
 
 const UserContext = createContext(null);
 
@@ -8,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
     const fetchUserData = useCallback(async () => {
         try {
-            const response = await fetch('http://localhost:8087/api/user/user-info', {
+            const response = await fetch(`${BASE_URL}/api/user/user-info`, {
                 credentials: 'include',
                 headers: {
                     'Accept': 'application/json'
