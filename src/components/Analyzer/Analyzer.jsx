@@ -73,7 +73,7 @@ const Analyzer = () => {
 
     const [maxvalue, setMaxvalue] = useState(0);
     useEffect(() => {
-        if (languagesData.datasets[0].data.length > 0) {
+        if (languagesData?.datasets?.[0]?.data?.length > 0) {
             setMaxvalue(Math.max(...languagesData.datasets[0].data));
         }
     }, [languagesData]);
@@ -150,7 +150,6 @@ const Analyzer = () => {
             clearStoredData();
             setInputValue(repoUrl);
             handleKeyDown({ key: 'Enter' });
-            //handleSearch();
         }
     }, [repoUrl]);
 
@@ -182,12 +181,6 @@ const Analyzer = () => {
     }, [inputValue]);
 
     useEffect(() => {
-        if (localStorage.getItem("inputValue")) {
-            //handleSearch();
-        }
-    }, []);
-
-    useEffect(() => {
         if (isSearched && dashboardRef.current) {
             dashboardRef.current.scrollIntoView({ behavior: "smooth" });
         }
@@ -213,7 +206,7 @@ const Analyzer = () => {
             if (dashboardRef.current) {
                 dashboardRef.current.scrollIntoView({ behavior: "smooth" });
             }
-        }, 200); // delay
+        }, 200);
 
         setLoading(true);
         setShowHelperText(false);
@@ -243,14 +236,12 @@ const Analyzer = () => {
             const languages = await languagesResponse.json();
             const durationData = await durationResponse.json();
 
-            console.log("effortData", effortData);
-            console.log("languages", languages);
-            console.log("durationData", durationData);
+            // --- DATA PROCESSING ---
 
-            const contributorEfforts = effortData.contributorEfforts;
+            const contributorEfforts = effortData.contributorEfforts || {};
             const contributorLabels = Object.keys(contributorEfforts);
             const efforts = contributorLabels.map(
-                (label) => contributorEfforts[label].effortPercentage.toFixed(1)
+                (label) => contributorEfforts[label]?.effortPercentage?.toFixed(1) || 0
             );
 
             const contributorChartColors = contributorLabels.map(
@@ -262,7 +253,7 @@ const Analyzer = () => {
                 datasets: [{ data: efforts, backgroundColor: contributorChartColors, hoverBackgroundColor: contributorChartColors }],
             });
 
-            const totalContributions = languages.totalContributions;
+            const totalContributions = languages.totalContributions || {};
             const languageLabels = Object.keys(totalContributions);
             const languageValues = Object.values(totalContributions);
 
@@ -282,25 +273,25 @@ const Analyzer = () => {
 
             setCommitsInfo(commits);
 
-            const durationInDays = durationData.durationInDays + 1;
+            const durationInDays = (durationData.durationInDays || 0) + 1;
             const months = (durationInDays / 30).toFixed(2);
             setDuration(`DURATION: ${durationInDays} days (${months} month${months >= 1.0 ? "s" : ""})`);
 
-            const durationfirstCommitDate = durationData.firstCommitDate;
-            const durationlastCommitDate = durationData.lastCommitDate;
-            setDurationDate(`${durationfirstCommitDate.substring(0, 10)} to ${durationlastCommitDate.substring(0, 10)}`);
+            // --- FIX IS HERE: Safe String Handling ---
+            const startDate = durationData.firstCommitDate ? durationData.firstCommitDate.substring(0, 10) : "N/A";
+            const endDate = durationData.lastCommitDate ? durationData.lastCommitDate.substring(0, 10) : "N/A";
+            setDurationDate(`${startDate} to ${endDate}`);
 
             setLoading(false);
             setIsSearched(true);
 
         } catch (error) {
             console.error("Error fetching or processing data:", error);
-            alert("Failed to fetch data. Please try again.");
+            alert("Failed to fetch data. Please try again or check the URL.");
             clearStoredData();
             setLoading(false);
         }
     };
-
 
     const handleLanguageClick = async (event) => {
         const chart = chartRef.current;
@@ -330,7 +321,7 @@ const Analyzer = () => {
                 const languagesResponse = await fetch(languagesApiUrl);
                 const languages = await languagesResponse.json();
 
-                const languageData = languages.percentages;
+                const languageData = languages.percentages || {};
                 const contributors = Object.entries(languageData).map(
                     ([contributor, langData]) => ({
                         name: contributor,
@@ -426,14 +417,6 @@ const Analyzer = () => {
                             </div>
                             <div className="commits-and-duration">
                                 <div id="commits-info">
-                                    {/*<h3*/}
-                                    {/*    onClick={handleCommitsHeaderClick}*/}
-                                    {/*    className="commits-header"*/}
-                                    {/*>*/}
-                                    {/*    <span className="commits-header-icon">📊</span>*/}
-                                    {/*    COMMITS*/}
-                                    {/*    <span style={{ fontSize: '0.8em', opacity: 0.8 }}>(Click for AI Analysis)</span>*/}
-                                    {/*</h3>*/}
                                     <h3>-:COMMITS:-</h3>
                                     {commitsInfo.map((commit, index) => (
                                         <p key={index}>
@@ -467,7 +450,7 @@ const Analyzer = () => {
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal-content" ref={modalRef}>
-                        <h2>{selectedLanguage.language} Contributors</h2>
+                        <h2>{selectedLanguage?.language} Contributors</h2>
                         <Pie
                             options={chartOptionsPercentage}
                             data={{
