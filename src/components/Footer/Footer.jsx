@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaEnvelope, FaArrowUp, FaKey, FaCheck, FaTimes } from 'react-icons/fa';
 import './Footer.css';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../config'; // Ensure BASE_URL is imported from your config file
+import { BASE_URL } from '../../config'; // Ensure BASE_URL is imported from your config file
 
 const Footer = () => {
     const [showTokenInput, setShowTokenInput] = useState(false);
