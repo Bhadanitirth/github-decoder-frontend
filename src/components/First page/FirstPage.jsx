@@ -109,7 +109,7 @@ const FirstPage = () => {
     }, []);
 
     const handleGetStarted = () => {
-        window.location.href = '${BASE_URL}/oauth2/authorization/github';
+        window.location.href = `${BASE_URL}/oauth2/authorization/github`;
     };
 
     return (
