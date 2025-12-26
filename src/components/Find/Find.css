@@ -1,0 +1,410 @@
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+/* General Styles */
+.app-container-find {
+    background-color: #0D1F2D;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.find-title {
+    color: white;
+    font-size: 25px;
+    margin-top: 20px;
+    animation: slideInRight 0.8s ease-out;
+}
+
+.search-section {
+    text-align: center;
+    padding: 20px;
+    height: 30px;
+    margin-top: 20px;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    transition: transform 0.3s ease;
+}
+
+.search-section:hover {
+    transform: translateY(-2px);
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f8f8;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    transition: all 0.3s ease;
+}
+
+.filter-bar:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 10;
+}
+
+.dropdown-button {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    min-width: 120px;
+    z-index: 1;
+    animation: scaleIn 0.2s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content div {
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content div:hover {
+    background: #e8e8e8;
+    padding-left: 16px;
+}
+
+/* Input Styles */
+.search-input-find {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.search-input-find:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(29, 161, 242, 0.3);
+}
+
+/* Repo Grid */
+.repo-grid-find {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+/* No Data */
+.nodata-find {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    top: 20%;
+    bottom: 1%;
+    text-align: center;
+    pointer-events: none;
+    z-index: 5;
+    animation: scaleIn 0.8s ease-out;
+}
+
+.nodata-find img {
+    transition: transform 0.3s ease;
+    pointer-events: auto;
+}
+
+.nodata-find img:hover {
+    transform: scale(1.05);
+}
+
+/* Show All Button */
+.show-all-button {
+    width: 100px;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+    padding: 12px 0;
+    margin: 10px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    border-radius: 30px;
+    text-align: center;
+    transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+    animation: scaleIn 0.8s ease-out;
+}
+
+.show-all-button:hover {
+    background: #1E3A5F;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Fetch Button */
+.fetch-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.fetch-button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.fetch-button:hover:before {
+    width: 200%;
+    height: 200%;
+}
+
+.fetch-button.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Find Hero Section Animations */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes featurePopIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 15px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes heroEntrance {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes contentSlide {
+    from {
+        opacity: 0;
+        transform: translate3d(-30px, 0, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes imageReveal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0) scale3d(0.95, 0.95, 1);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    }
+}
+
+.find-hero-section {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 50px;
+    max-width: 1400px;
+    min-height: 500px;
+    margin-top: 5px;
+    background: linear-gradient(135deg, rgba(13, 31, 45, 0.3) 0%, rgba(30, 58, 95, 0.3) 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    animation: heroEntrance 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
+}
+
+.find-hero-content {
+    flex: 0 1 45%;
+    padding-right: 40px;
+    animation: contentSlide 0.8s cubic-bezier(0.2, 0, 0.2, 1) 0.2s backwards;
+}
+
+.find-hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #ffffff, #1f6feb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+.find-hero-description {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.find-hero-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.find-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background-color: rgba(31, 111, 235, 0.1);
+    border-radius: 8px;
+    color: white;
+    transform: translate3d(0, 0, 0);
+    animation: featurePopIn 0.5s cubic-bezier(0.2, 0, 0.2, 1) backwards;
+    animation-delay: calc(var(--i, 0) * 0.1s + 0.4s);
+    will-change: transform, opacity;
+}
+
+.find-feature-item:hover {
+    transform: translate3d(0, -2px, 0);
+    background-color: rgba(31, 111, 235, 0.2);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.find-hero-image-container {
+    flex: 1;
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+}
+
+.find-hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    animation: imageReveal 1s cubic-bezier(0.2, 0, 0.2, 1) 0.3s backwards;
+    will-change: transform;
+}
+
+.find-hero-image:hover {
+    transform: translate3d(0, -5px, 0);
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.find-hero-right {
+    flex: 0 1 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.find-hero-search {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s cubic-bezier(0.2, 0, 0.2, 1) 0.6s backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .find-hero-section {
+        flex-direction: column;
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .find-hero-content,
+    .find-hero-right {
+        flex: 1;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .find-hero-features {
+        grid-template-columns: 1fr;
+    }
+
+    .find-hero-image {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,168 @@
+.ai-insights-wrapper {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-chart-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .ai-chart-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 1200px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: modalFadeIn 0.3s ease-in-out;
+  }
+
+  .ai-modal-chart-wrapper {
+    height: 70vh;
+  }
+
+  .ai-close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.2s;
+  }
+
+  .ai-close-modal-btn:hover {
+    background: #f8f9fa;
+    border-radius: 4px;
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+/* Add these styles to CommitInsights.css */
+.ai-modal-content {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+
+.ai-contributors-list {
+    width: 250px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.ai-contributor-item {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-contributor-item:hover {
+    background: #e9ecef;
+}
+
+.ai-contributor-item.selected {
+    background: #1f6feb;
+    color: white;
+}
+
+.ai-contributor-item span {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.ai-modal-chart-wrapper {
+    flex: 1;
+    height: 100%;
+    padding: 15px;
+}
+
+/* Update existing modal styles */
+.ai-chart-modal {
+    width: 90%;
+    max-width: 1400px;
+    height: 80vh;
+}
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.2em;
+    color: #dc3545;
+}
+
+.ai-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  padding: 20px;
+}
+
+.ai-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1f6feb;
+  border-radius: 50%;
+  animation: ai-spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+.ai-loading-text {
+  color: #666;
+  font-size: 1.1em;
+  margin: 0;
+  text-align: center;
+}
+
+@keyframes ai-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
